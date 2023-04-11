@@ -1,6 +1,12 @@
 import { ChangeEvent, useState } from "react";
 import logo from "../style/logo.svg";
 import "../style/style.css";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -28,7 +34,6 @@ export const Login = () => {
         }
       }
     }
-  
     if (!matchFound) {
       // Incorrect email and/or password, show error message
       setError("Incorrect email and/or password");
@@ -65,6 +70,8 @@ export const Login = () => {
         <button className="control" type="submit">
           LOG IN
         </button>
+
+          <Link to="/signup">Sign up</Link>
       </form>
     </div>
   );

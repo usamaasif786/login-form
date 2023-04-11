@@ -66,25 +66,54 @@ export const Signup = () => {
   //   setStrength("");
   // };
 
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+
+  //   const storedData = JSON.parse(localStorage.getItem("signupData")) || [];
+  //   const storedEmails = storedData.map((data) => data.email);
+  //   if (storedEmails.includes(email)) {
+  //     alert("Email address already exists!"); // show an error message to the user
+  //     return;
+  //   }
+
+  //   const formData = { email, password };
+  //   const updatedData = [...storedData, formData];
+  //   localStorage.setItem("signupData", JSON.stringify(updatedData));
+
+  //   console.log("Form data submitted!");
+  //   setEmail("");
+  //   setPassword("");
+  //   setStrength("");
+  //   window.location.href = "/";
+  // };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-
+  
+    if (!email || !password) {
+      alert("Please enter an email and password.");
+      return;
+    }
+  
     const storedData = JSON.parse(localStorage.getItem("signupData")) || [];
     const storedEmails = storedData.map((data) => data.email);
     if (storedEmails.includes(email)) {
-      alert("Email address already exists!"); // show an error message to the user
+      alert("Email address already exists!");
       return;
     }
-
+  
     const formData = { email, password };
     const updatedData = [...storedData, formData];
     localStorage.setItem("signupData", JSON.stringify(updatedData));
-
+  
     console.log("Form data submitted!");
     setEmail("");
     setPassword("");
     setStrength("");
+    window.location.href = "/";
   };
+  
+
 
   return (
     <div className="login-card">
@@ -118,7 +147,7 @@ export const Signup = () => {
         </div>
         <div className="strength">{strength && <>{strength} password</>}</div>
         <button className="control" type="submit">
-          JOIN NOW
+          SIGN UP
         </button>
       </form>
     </div>
