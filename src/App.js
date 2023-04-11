@@ -1,6 +1,6 @@
 import './App.css';
 import { Signup } from './components/signupform/signupform';
-import { Login } from './components/signupform/loginform';
+import { Login } from './components/loginform/loginform';
 function App() {
   return (
     <div>

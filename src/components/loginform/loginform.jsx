@@ -1,11 +1,8 @@
 import { ChangeEvent, useState } from "react";
-import logo from "./logo.svg";
-import "./style.css";
-
-const strengthLabels = ["weak", "medium", "strong"];
+import logo from "../style/logo.svg";
+import "../style/style.css";
 
 export const Login = () => {
-  const [strength, setStrength] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");

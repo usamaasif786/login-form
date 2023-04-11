@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
-import logo from "./logo.svg";
-import "./style.css";
+import logo from "../style/logo.svg";
+import "../style/style.css"
 
 const strengthLabels = ["weak", "medium", "strong"];
 
