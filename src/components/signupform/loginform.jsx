@@ -10,51 +10,29 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const getStrength = (password) => {
-    let strengthIndicator = -1;
-
-    let upper = false,
-      lower = false,
-      numbers = false;
-
-    for (let index = 0; index < password.length; index++) {
-      let char = password.charCodeAt(index);
-      if (!upper && char >= 65 && char <= 90) {
-        upper = true;
-        strengthIndicator++;
-      }
-
-      if (!numbers && char >= 48 && char <= 57) {
-        numbers = true;
-        strengthIndicator++;
-      }
-
-      if (!lower && char >= 97 && char <= 122) {
-        lower = true;
-        strengthIndicator++;
-      }
-    }
-
-    setStrength(strengthLabels[strengthIndicator] || "");
-  };
-
   const handleEmailChange = (event) => setEmail(event.target.value);
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-    getStrength(event.target.value);
-  };
+  const handlePasswordChange = (event) => setPassword(event.target.value);
 
   const handleLogin = (event) => {
     event.preventDefault();
-
-    const storedEmail = localStorage.getItem("email");
-    const storedPassword = localStorage.getItem("password");
-
-    if (email === storedEmail && password === storedPassword) {
-      // Correct email and password, show success screen
-      alert("Login successful!");
-    } else {
+  
+    const signups = JSON.parse(localStorage.getItem("signupData"));
+    let matchFound = false;
+  
+    if (signups) {
+      for (let i = 0; i < signups.length; i++) {
+        const signup = signups[i];
+        if (email === signup.email && password === signup.password) {
+          // Correct email and password, show success screen
+          alert("Login successful!");
+          matchFound = true;
+          break;
+        }
+      }
+    }
+  
+    if (!matchFound) {
       // Incorrect email and/or password, show error message
       setError("Incorrect email and/or password");
     }
@@ -68,7 +46,7 @@ export const Login = () => {
       <form className="login-form" onSubmit={handleLogin}>
         <div className="username">
           <input
-            autoComplete="off"
+            autoComplete="on"
             spellCheck="false"
             className="control"
             type="email"
@@ -87,11 +65,6 @@ export const Login = () => {
           value={password}
           onChange={handlePasswordChange}
         />
-
-        {/* <div className={`bars ${strength}`}>
-          <div></div>
-        </div> */}
-        {/* <div className="strength">{strength && <>{strength} password</>}</div> */}
         <button className="control" type="submit">
           LOG IN
         </button>

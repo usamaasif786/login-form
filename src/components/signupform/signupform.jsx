@@ -51,41 +51,40 @@ export const Signup = () => {
 
   // const handleSubmit = (event) => {
   //   event.preventDefault();
+  
+  //   const storedEmail = localStorage.getItem("email");
+  //   if (storedEmail === email) {
+  //     alert("Email address already exists!"); // show an error message to the user
+  //     return;
+  //   }
+  
   //   localStorage.setItem("email", email);
   //   localStorage.setItem("password", password);
   //   console.log("Form data submitted!");
-  // };
-  
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   if (!localStorage.getItem("email") && !localStorage.getItem("password")) {
-  //     localStorage.setItem("email", email);
-  //     localStorage.setItem("password", password);
-  //     console.log("Form data submitted!");
-  //   } else {
-  //     alert("Email and password already exist in localStorage!");
-  //   }
+  //   setEmail("");
+  //   setPassword("");
+  //   setStrength("");
   // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  
-    const storedEmail = localStorage.getItem("email");
-    if (storedEmail === email) {
-      alert("Email address already exists!");
-      // show an error message to the user
+
+    const storedData = JSON.parse(localStorage.getItem("signupData")) || [];
+    const storedEmails = storedData.map((data) => data.email);
+    if (storedEmails.includes(email)) {
+      alert("Email address already exists!"); // show an error message to the user
       return;
     }
-  
-    localStorage.setItem("email", email);
-    localStorage.setItem("password", password);
+
+    const formData = { email, password };
+    const updatedData = [...storedData, formData];
+    localStorage.setItem("signupData", JSON.stringify(updatedData));
+
     console.log("Form data submitted!");
     setEmail("");
     setPassword("");
     setStrength("");
   };
-
-
 
   return (
     <div className="login-card">
