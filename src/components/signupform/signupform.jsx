@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import logo from "../style/logo.svg";
+import signuplogo from "../style/signup-logo.png"
 import "../style/style.css"
 
 const strengthLabels = ["weak", "medium", "strong"];
@@ -117,7 +118,7 @@ export const Signup = () => {
 
   return (
     <div className="login-card">
-      <img src={logo} alt="Logo" />
+      <img src={signuplogo} alt="Logo" />
       <h2>Sign Up</h2>
       <form className="login-form" onSubmit={handleSubmit}>
         <div className="username">

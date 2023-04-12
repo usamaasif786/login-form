@@ -1,6 +1,7 @@
 import { useState } from "react";
 import logo from "../style/logo.svg";
 import "../style/style.css";
+import welcomelogo from "../style/welcome-logo.png"
 import { useHistory, useNavigate } from "react-router-dom";
 
 const MainPage = () => {
@@ -23,7 +24,7 @@ const MainPage = () => {
 
   return (
     <div className="main-page">
-      <img src={logo} alt="Logo" />
+      <img src={welcomelogo} alt="Logo" />
       <h2>Welcome, {username}!</h2>
       <p>Here you'll find information about me and my projects.</p>
       <p>Feel free to browse around and contact me if you have any questions.</p>
