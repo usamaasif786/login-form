@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import logo from "../style/logo.svg";
 import "../style/style.css";
+import MainPage from "../body/mainpage";
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,6 +13,7 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [authenticated, setAuthenticated] = useState(false);
 
   const handleEmailChange = (event) => setEmail(event.target.value);
 
@@ -20,6 +22,11 @@ export const Login = () => {
   const handleLogin = (event) => {
     event.preventDefault();
   
+    if (!email || !password) {
+      alert("Please enter both email and password.");
+      return;
+    }
+    
     const signups = JSON.parse(localStorage.getItem("signupData"));
     let matchFound = false;
   
@@ -30,6 +37,7 @@ export const Login = () => {
           // Correct email and password, show success screen
           alert("Login successful!");
           matchFound = true;
+          setAuthenticated(true);
           break;
         }
       }
@@ -39,6 +47,10 @@ export const Login = () => {
       setError("Incorrect email and/or password");
     }
   };
+
+  if (authenticated) {
+    return <MainPage />;
+  }
 
   return (
     <div className="login-card">
