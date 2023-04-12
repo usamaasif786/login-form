@@ -1,5 +1,4 @@
 import { ChangeEvent, useState } from "react";
-import logo from "../style/logo.svg";
 import signuplogo from "../style/signup-logo.png"
 import "../style/style.css"
 
@@ -49,44 +48,6 @@ export const Signup = () => {
       getStrength(event.target.value);
     }
   };
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  
-  //   const storedEmail = localStorage.getItem("email");
-  //   if (storedEmail === email) {
-  //     alert("Email address already exists!"); // show an error message to the user
-  //     return;
-  //   }
-  
-  //   localStorage.setItem("email", email);
-  //   localStorage.setItem("password", password);
-  //   console.log("Form data submitted!");
-  //   setEmail("");
-  //   setPassword("");
-  //   setStrength("");
-  // };
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-
-  //   const storedData = JSON.parse(localStorage.getItem("signupData")) || [];
-  //   const storedEmails = storedData.map((data) => data.email);
-  //   if (storedEmails.includes(email)) {
-  //     alert("Email address already exists!"); // show an error message to the user
-  //     return;
-  //   }
-
-  //   const formData = { email, password };
-  //   const updatedData = [...storedData, formData];
-  //   localStorage.setItem("signupData", JSON.stringify(updatedData));
-
-  //   console.log("Form data submitted!");
-  //   setEmail("");
-  //   setPassword("");
-  //   setStrength("");
-  //   window.location.href = "/";
-  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();

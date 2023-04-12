@@ -1,5 +1,4 @@
 import { useState } from "react";
-import logo from "../style/logo.svg";
 import "../style/style.css";
 import welcomelogo from "../style/welcome-logo.png"
 import { useHistory, useNavigate } from "react-router-dom";

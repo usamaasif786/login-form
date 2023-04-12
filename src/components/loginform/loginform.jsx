@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import logo from "../style/logo.svg";
+import loginlogo from "../style/login-logo.png"
 import "../style/style.css";
 import MainPage from "../body/mainpage";
 import {
@@ -59,7 +60,7 @@ export const Login = () => {
 
   return (
     <div className="login-card">
-      <img src={logo} alt="Logo" />
+      <img src={loginlogo} alt="Logo" />
       <h2>Login</h2>
       {error && <div className="error">{error}</div>}
       <form className="login-form" onSubmit={handleLogin}>
