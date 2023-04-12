@@ -6,7 +6,9 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  useHistory,
+  useNavigate
 } from "react-router-dom";
 
 export const Login = () => {
@@ -14,9 +16,10 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [authenticated, setAuthenticated] = useState(false);
+  // const history = useHistory();
+  const navigate = useNavigate();
 
   const handleEmailChange = (event) => setEmail(event.target.value);
-
   const handlePasswordChange = (event) => setPassword(event.target.value);
 
   const handleLogin = (event) => {
@@ -26,7 +29,7 @@ export const Login = () => {
       alert("Please enter both email and password.");
       return;
     }
-    
+
     const signups = JSON.parse(localStorage.getItem("signupData"));
     let matchFound = false;
   
@@ -49,6 +52,8 @@ export const Login = () => {
   };
 
   if (authenticated) {
+    // history.push("/main");
+    navigate("/mainpage");
     return <MainPage />;
   }
 
@@ -60,6 +65,7 @@ export const Login = () => {
       <form className="login-form" onSubmit={handleLogin}>
         <div className="username">
           <input
+            id="email"
             autoComplete="on"
             spellCheck="false"
             className="control"
@@ -71,6 +77,7 @@ export const Login = () => {
           <div id="spinner" className="spinner"></div>
         </div>
         <input
+          id="password"
           name="password"
           spellCheck="false"
           className="control"
@@ -82,9 +89,13 @@ export const Login = () => {
         <button className="control" type="submit">
           LOG IN
         </button>
-
-          <Link to="/signup">Sign up</Link>
       </form>
+      <p>
+        Don't have an account?{" "}
+        <Link to="/signup" className="link">
+          Sign up
+        </Link>
+      </p>
     </div>
   );
 };
